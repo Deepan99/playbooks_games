@@ -17,7 +17,7 @@
         src: files/backup.sh
         dest: "{{ backup_dir }}/backup.sh"
         mode: 0755
-      when: "{{ ansible_os_family == 'Debian' }}"
+      when: ansible_os_family == 'Debian'
 
     - name: Restart cron service
       service:
