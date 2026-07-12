@@ -1,0 +1,22 @@
+---
+- name: Deploy Service Configurations
+  hosts: webservers
+  vars:
+    config_files:
+      - app.conf
+      - db.conf
+
+  tasks:
+    - name: Check system load
+      command: uptime
+      register: system_load
+
+    - name: Print system load output
+      debug:
+        msg: "The load is {{ system_load }}"
+
+    - name: Copy configurations
+      copy:
+        src: "files/{{ item }}"
+        dest: "/etc/myapp/{{ item }}"
+      loop: config_files
