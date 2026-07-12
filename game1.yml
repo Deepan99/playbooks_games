@@ -24,3 +24,8 @@
         name: cron
         state: restarted
       notify: Restart Cron
+  handlers:
+    - name: Restart Cron
+      service:
+        name: cron
+        state: restarted
