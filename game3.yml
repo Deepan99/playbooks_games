@@ -12,7 +12,7 @@
 
     - name: Print the result of the database check
       debug:
-        msg: "The status is: {{ check_results.results[0]stdout }}"
+        msg: "The status is: {{ check_results.results[0].stdout }}"
 
     - name: Create secure folder
       file:
