@@ -19,5 +19,4 @@
       copy:
         src: "files/{{ item }}"
         dest: "/etc/myapp/{{ item }}"
-      loop: 
-        - "{{ config_files }}"
+      loop: "{{ config_files }}"
