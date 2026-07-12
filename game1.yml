@@ -1,0 +1,26 @@
+---
+- name: Configure Backup Client
+  hosts: all
+  become: yes
+  vars:
+    backup_dir: /opt/backup
+
+  tasks:
+    - name: Create backup directory
+      file:
+        path: backup_dir
+        state: directory
+        mode: 0755
+
+    - name: Copy backup script
+      copy:
+        src: files/backup.sh
+        dest: "{{ backup_dir }}/backup.sh"
+        mode: 0755
+      when: "{{ ansible_os_family == 'Debian' }}"
+
+    - name: Restart cron service
+      service:
+        name: cron
+        state: restarted
+      notify: Restart Cron
