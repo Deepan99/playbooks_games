@@ -1,0 +1,21 @@
+---
+- name: Advanced Host Operations
+  hosts: all
+
+  tasks:
+    - name: Run checks in a loop
+      command: "echo 'Status check for {{ item }}'"
+      loop:
+        - database
+        - webserver
+      register: check_results
+
+    - name: Print the result of the database check
+      debug:
+        msg: "The status is: {{ check_results.stdout }}"
+
+    - name: Create secure folder
+      file:
+        path: /etc/secure_app
+        state: directory
+      become_user: root
