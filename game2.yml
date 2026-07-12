@@ -13,10 +13,11 @@
 
     - name: Print system load output
       debug:
-        msg: "The load is {{ system_load }}"
+        msg: "The load is {{ system_load.stdout }}"
 
     - name: Copy configurations
       copy:
         src: "files/{{ item }}"
         dest: "/etc/myapp/{{ item }}"
-      loop: config_files
+      loop: 
+        - "{{ config_files }}"
