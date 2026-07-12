@@ -12,10 +12,10 @@
 
     - name: Print the result of the database check
       debug:
-        msg: "The status is: {{ check_results.stdout }}"
+        msg: "The status is: {{ check_results.results[0]stdout }}"
 
     - name: Create secure folder
       file:
         path: /etc/secure_app
         state: directory
-      become_user: root
+      become: yes
